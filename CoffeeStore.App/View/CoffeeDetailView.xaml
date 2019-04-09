@@ -26,7 +26,7 @@
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="30"></RowDefinition>
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Content="{Binding CoffeeName}" Grid.ColumnSpan="2" FontSize="40" FontWeight="Bold"></Label>
+            <Label Grid.Row="0" Content="{Binding CoffeeName, Mode=OneWay}" Grid.ColumnSpan="2" FontSize="40" FontWeight="Bold"></Label>
 
             <Image Source="{Binding ImageId}" Grid.Row="1"
                    Grid.ColumnSpan="2" MaxHeight="150" MaxWidth="150"></Image>
