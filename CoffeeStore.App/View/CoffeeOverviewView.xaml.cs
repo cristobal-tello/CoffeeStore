@@ -2,6 +2,7 @@
 using CoffeeStore.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -17,7 +18,7 @@ namespace CoffeeStore.App.View
 
         private Coffee selectedCoffee;
 
-        private List<Coffee> coffees;
+        private ObservableCollection<Coffee> coffees;
 
         public object SelectedCofffee { get; private set; }
 
@@ -35,7 +36,7 @@ namespace CoffeeStore.App.View
         private void LoadData()
         {
             CoffeeDataService service = new CoffeeDataService();
-            coffees = service.GetAllCoffees();
+            coffees = new ObservableCollection<Coffee>(service.GetAllCoffees());
             CoffeeListView.ItemsSource = coffees;
 
         }
@@ -63,7 +64,19 @@ namespace CoffeeStore.App.View
 
         private void AddFakeCoffeeButton_Click(object sender, RoutedEventArgs e)
         {
-
+            coffees.Add(
+                new Coffee()
+                {
+                    CoffeeId = 123,
+                    CoffeeName = "Test Coffee",
+                    Description = "Simply another test coffee",
+                    ImageId = 1,
+                    AmountInStock = 100,
+                    InStock = true,
+                    FirstAddedToStockDate = DateTime.Now,
+                    OriginCountry = new Country("Brazil"),
+                    Price = 12
+                });
         }
 
         private void EditCoffeeButton_Click(object sender, RoutedEventArgs e)
